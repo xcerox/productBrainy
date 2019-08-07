@@ -1,7 +1,9 @@
 package com.doit.book.socialmultiplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +23,7 @@ public class MultiplicationResultAttemptController {
 	}
 	
 	@PostMapping
-	CheckOperationResultResponse checkOperationResult(MultiplicationResultAttempt attempt) {
+	CheckOperationResultResponse checkOperationResult(@RequestBody MultiplicationResultAttempt attempt) {
 		boolean resultAttempt = multiplicationService.checkAttempt(attempt);
 		return new CheckOperationResultResponse(resultAttempt);
 	}
