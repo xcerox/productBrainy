@@ -3,8 +3,8 @@ package com.doit.book.socialmultiplication.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doit.book.socialmultiplication.controller.message.CheckOperationResultRequest;
 import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.domain.MultiplicationResultAttempt;
 import com.doit.book.socialmultiplication.service.MultiplicationService;
 import com.doit.book.socialmultiplication.service.RandomNumberService;
 
@@ -27,8 +27,8 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 	}
 
 	@Override
-	public boolean checkAttempt(MultiplicationResultAttempt resultAttempt) {
-		return resultAttempt.getResultAttempt() == (resultAttempt.getMultiplication().getFactorA() * resultAttempt.getMultiplication().getFactorB() );
+	public boolean checkAttempt(CheckOperationResultRequest attempt) {
+		return attempt.getProduct() == (attempt.getMultiplication().getFactorA() * attempt.getMultiplication().getFactorB());
 	}
 }
 

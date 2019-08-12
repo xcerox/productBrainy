@@ -19,9 +19,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import com.doit.book.socialmultiplication.controller.message.CheckOperationResultRequest;
 import com.doit.book.socialmultiplication.controller.message.CheckOperationResultResponse;
 import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.domain.MultiplicationResultAttempt;
 import com.doit.book.socialmultiplication.domain.User;
 import com.doit.book.socialmultiplication.service.MultiplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,7 +36,7 @@ public class MultiplicationResultAttemptControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
-	private JacksonTester<MultiplicationResultAttempt> jsonResult;
+	private JacksonTester<CheckOperationResultRequest> jsonRequest;
 	private JacksonTester<CheckOperationResultResponse> jsonResponse;
 	
 	@Before
@@ -46,28 +46,31 @@ public class MultiplicationResultAttemptControllerTest {
 	
 	@Test
 	public void postResultReturnCorrect() throws Exception {
-		generateParamerizedTest(true);
+		Multiplication operation = new Multiplication(50, 70);
+		Integer product = 3500;
+		generateParamerizedTest(operation, product, true);
 	}
 	
 	@Test
 	public void postResultReturnNotCorrect() throws Exception {
-		generateParamerizedTest(false);
+		Multiplication operation = new Multiplication(50, 70);
+		Integer product = 0;
+		generateParamerizedTest(operation, product, true);
 	}
 	
-	void generateParamerizedTest(final boolean correct) throws Exception {
+	void generateParamerizedTest(Multiplication operation, Integer product, boolean isCorrect) throws Exception {
 		// given
-		given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class))).willReturn(correct);
+		given(multiplicationService.checkAttempt(any(CheckOperationResultRequest.class))).willReturn(isCorrect);
 		User user = new User("john");
-		Multiplication operation = new Multiplication(50, 70);
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, operation, 3500);
-		RequestBuilder request = post("/results").contentType(MediaType.APPLICATION_JSON).content(jsonResult.write(attempt).getJson());
+		CheckOperationResultRequest attempt = new CheckOperationResultRequest(user, operation, product);
+		RequestBuilder request = post("/results").contentType(MediaType.APPLICATION_JSON).content(jsonRequest.write(attempt).getJson());
 		
 		// when
 		MockHttpServletResponse response = mvc.perform(request).andReturn().getResponse();
 		
 		// then
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-		assertThat(response.getContentAsString()).isEqualTo(jsonResponse.write(new CheckOperationResultResponse(correct)).getJson());
+		assertThat(response.getContentAsString()).isEqualTo(jsonResponse.write(new CheckOperationResultResponse(attempt, isCorrect)).getJson());
 		
 	}
 	

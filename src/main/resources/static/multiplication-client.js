@@ -51,12 +51,12 @@ $(document).ready(() => {
 	form.submit(event => {
 		event.preventDefault();
 
-		const data = {
+		const payload = {
 			user: { alias: userAlias.val() },
 			multiplication: { factorA: factorA.text(), factorB: factorB.text() },
-			resultAttempt: attempt.val()
+			product: attempt.val()
 		};
 
-		postAttemp(data);
+		postAttemp(payload);
 	});
 });

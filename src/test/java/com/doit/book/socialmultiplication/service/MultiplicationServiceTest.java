@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.doit.book.socialmultiplication.controller.message.CheckOperationResultRequest;
 import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.domain.MultiplicationResultAttempt;
 import com.doit.book.socialmultiplication.domain.User;
 
 
@@ -32,7 +32,7 @@ public class MultiplicationServiceTest {
 		//Given
 		Multiplication multiplication = new Multiplication(50, 60);
 		User user = new User("Frank");
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+		CheckOperationResultRequest attempt = new CheckOperationResultRequest(user, multiplication, 3000);
 		
 		//When
 		boolean attemptResult = multiplicationService.checkAttempt(attempt);
@@ -46,7 +46,7 @@ public class MultiplicationServiceTest {
 		//Given
 		Multiplication multiplication = new Multiplication(50, 60);
 		User user = new User("Frank");
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+		CheckOperationResultRequest attempt = new CheckOperationResultRequest(user, multiplication, 3010);
 		
 		//When
 		boolean attemptResult = multiplicationService.checkAttempt(attempt);
