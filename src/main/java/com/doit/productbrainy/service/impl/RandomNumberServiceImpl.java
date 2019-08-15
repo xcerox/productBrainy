@@ -1,10 +1,10 @@
-package com.doit.book.socialmultiplication.service.impl;
+package com.doit.productbrainy.service.impl;
 
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
-import com.doit.book.socialmultiplication.service.RandomNumberService;
+import com.doit.productbrainy.service.RandomNumberService;
 
 @Service
 public class RandomNumberServiceImpl implements RandomNumberService {

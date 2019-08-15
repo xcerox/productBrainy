@@ -1,12 +1,12 @@
-package com.doit.book.socialmultiplication.controller;
+package com.doit.productbrainy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.service.MultiplicationService;
+import com.doit.productbrainy.domain.Multiplication;
+import com.doit.productbrainy.service.MultiplicationService;
 
 @RestController
 @RequestMapping("/multiplications")

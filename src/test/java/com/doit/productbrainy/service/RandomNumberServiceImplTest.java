@@ -1,4 +1,4 @@
-package com.doit.book.socialmultiplication.service;
+package com.doit.productbrainy.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,7 +9,8 @@ import java.util.stream.IntStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.doit.book.socialmultiplication.service.impl.RandomNumberServiceImpl;
+import com.doit.productbrainy.service.RandomNumberService;
+import com.doit.productbrainy.service.impl.RandomNumberServiceImpl;
 
 
 public class RandomNumberServiceImplTest {

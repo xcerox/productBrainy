@@ -1,4 +1,4 @@
-package com.doit.book.socialmultiplication.service;
+package com.doit.productbrainy.service;
 
 public interface RandomNumberService {
 	int generateRandomFactor();

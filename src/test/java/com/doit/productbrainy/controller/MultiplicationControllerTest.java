@@ -1,4 +1,4 @@
-package com.doit.book.socialmultiplication.controller;
+package com.doit.productbrainy.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -17,8 +17,9 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.service.MultiplicationService;
+import com.doit.productbrainy.controller.MultiplicationController;
+import com.doit.productbrainy.domain.Multiplication;
+import com.doit.productbrainy.service.MultiplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)

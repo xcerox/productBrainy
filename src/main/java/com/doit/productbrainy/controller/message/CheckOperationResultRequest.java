@@ -1,9 +1,10 @@
-package com.doit.book.socialmultiplication.controller.message;
+package com.doit.productbrainy.controller.message;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import com.doit.book.socialmultiplication.domain.Multiplication;
-import com.doit.book.socialmultiplication.domain.User;
+import com.doit.productbrainy.domain.Multiplication;
+import com.doit.productbrainy.domain.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public final class CheckOperationResultRequest {
 
+	@Valid
 	@NotNull(message = "{checkOperationResultRequest.user.notNull}")
 	private final User user;
 	@NotNull(message = "{checkOperationResultRequest.multiplication.notNull}")
