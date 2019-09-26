@@ -23,5 +23,4 @@ public class MultiplicationController {
 	Multiplication getRandomMultiplication() {
 		return multiplicationService.createRandomMultiplication();
 	}
-
 }

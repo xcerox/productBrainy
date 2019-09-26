@@ -17,7 +17,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.doit.productbrainy.controller.MultiplicationController;
+import com.doit.productbrainy.core.WrapperResponse;
 import com.doit.productbrainy.domain.Multiplication;
 import com.doit.productbrainy.service.MultiplicationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +32,7 @@ public class MultiplicationControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
-	private JacksonTester<Multiplication> json;
+	private JacksonTester<WrapperResponse> json;
 	
 	@Before
 	public void setUp() {
@@ -41,17 +41,16 @@ public class MultiplicationControllerTest {
 	
 	@Test
 	public void getRandomMultiplicationTest() throws Exception {
-		//Given
+		// Given
 		given(multiplicationService.createRandomMultiplication()).willReturn(new  Multiplication(70,  20));
+		WrapperResponse wrapperRenponse = WrapperResponse.builder().successful(true).data(new Multiplication(70, 20)).build();
 		
-		// when 
+		// When 
 		MockHttpServletResponse response = mvc.perform(get("/multiplications/random").accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
 		
-		// then
+		// Then
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-		assertThat(response.getContentAsString()).isEqualTo(json.write(new Multiplication(70, 20)).getJson());
+		assertThat(response.getContentAsString()).isEqualTo(json.write(wrapperRenponse).getJson());
 		
 	}
-	
-	
 }

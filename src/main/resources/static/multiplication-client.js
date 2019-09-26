@@ -48,16 +48,20 @@ const setUpHttpRequest = () => {
 }
 
 const getFactors = cleanAlias => {
-	$.get("/multiplications/random", data => {
-		attempt.val("");
-		resultMessage.val("");
+	$.get("/multiplications/random", response => {
 
-		if (cleanAlias) {
-			userAlias.val("");
+		if (response.successful) {
+			const { data } = response;
+			attempt.val("");
+			resultMessage.val("");
+	
+			if (cleanAlias) {
+				userAlias.val("");
+			}
+			
+			factorB.empty().append(data.factorB);
+			factorA.empty().append(data.factorA);
 		}
-		
-		factorB.empty().append(data.factorB);
-		factorA.empty().append(data.factorA);
 	})
 }
 
@@ -79,7 +83,8 @@ const updateStats = alias => {
 			statsBody.append(`<tr>
 													<td>${row.id}</td>
 													<td>${row.multiplication.factorA} x ${row.multiplication.factorB} </td>
-													<td>${row.product}</td><td>${row.correct}</td>
+													<td>${row.product}</td>
+													<td>${row.correct}</td>
 												</tr>`);
 		});
 	});
