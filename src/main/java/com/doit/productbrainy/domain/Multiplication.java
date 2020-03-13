@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.doit.productbrainy.core.WrapperResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -33,5 +34,9 @@ public final class Multiplication {
 		factorA = 0;
 		factorB = 0;
 	}
-
+	
+	
+	public static class BodyResponse extends WrapperResponse<Multiplication> {}
 }
+
+

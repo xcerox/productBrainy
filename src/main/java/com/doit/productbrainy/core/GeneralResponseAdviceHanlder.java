@@ -30,7 +30,12 @@ public class GeneralResponseAdviceHanlder implements ResponseBodyAdvice<Object> 
 			Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request,
 			ServerHttpResponse response) {
 		
-		final WrapperResponse wrapper = new WrapperResponse();
+		if (body instanceof String && ((String)body).contains("api")) {
+			return body;
+		}
+		
+		
+		final WrapperResponse<Object> wrapper = new WrapperResponse<>();
 		final ServletServerHttpResponse servletResponse = (ServletServerHttpResponse) response;
 
 		if (servletResponse.getServletResponse().getStatus() <= HIGHEST_CODE_SUCCESSFUL) {

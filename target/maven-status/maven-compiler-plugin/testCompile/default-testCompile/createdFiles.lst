@@ -1,0 +1,5 @@
+com\doit\productbrainy\controller\MultiplicationResultAttemptControllerTest.class
+com\doit\productbrainy\controller\MultiplicationControllerTest.class
+com\doit\productbrainy\service\MultiplicationServiceImplTest.class
+com\doit\productbrainy\service\RandomNumberServiceImplTest.class
+com\doit\productbrainy\service\RandomNumberServiceTest.class

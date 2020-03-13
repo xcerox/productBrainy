@@ -17,8 +17,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class WrapperResponse {
+public class WrapperResponse<T> {
 	private boolean successful;
-	private Object data;
+	private T data;
 	private String errorMessage;
 }
